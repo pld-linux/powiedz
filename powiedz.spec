@@ -2,7 +2,7 @@ Summary:	Text to speech system
 Summary(pl):	Syntezator mowy
 Name:		powiedz
 Version:	0.2
-Release:	1
+Release:	2
 License:	GPL
 Group:		Applications/Sound
 Source0:	http://www.linux.bielsko.pl/%{name}_%{version}.tgz
@@ -26,18 +26,18 @@ Polski syntezator mowy stworzony na podstawie rsynth.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_bindir}
+install -d $RPM_BUILD_ROOT{%{_bindir},%{_examplesdir}/%{name}-%{version}}
 
 %{__make} install PREFIX=$RPM_BUILD_ROOT%{_prefix}
 
-tail +3 <pars.def >sayrc.example
+tail +3 <pars.def >$RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}/sayrc.example
 mv -f klatt_par.doc klatt_par
-gzip -9nf PRZECZYTAJ.TO README README.linux sayrc.example klatt_par
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc *.gz
+%doc PRZECZYTAJ.TO README README.linux klatt_par
 %attr(755,root,root) %{_bindir}/powiedz
+%{_examplesdir}/%{name}-%{version}
