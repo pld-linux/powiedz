@@ -27,7 +27,7 @@ Polski syntezator mowy stworzony na podstawie rsynth.
 %build
 cp Makefile_plain Makefile
 %{__make} \
-	CFLAGS="%{rpmcflags} -I/usr/include/artsc"
+	CFLAGS="%{rpmcflags} `artsc-config --cflags`"
 
 %install
 rm -rf $RPM_BUILD_ROOT
