@@ -8,7 +8,7 @@ diff -urN aaa/powiedz/Makefile_plain powiedz/Makefile_plain
 -LDLIBS       = -L/usr/lib -lm
 -CFLAGS       = -g -O
 -DEFS         = 
-+LDLIBS       = -L/usr/lib -lm -lesd -L/usr/lib -ldl -lartsc -lpthread
++LDLIBS       = -L/usr/lib -lm -lesd -L/usr/X11R6/lib -ldl -lartsc -lpthread
 +DEFS         =  -DUSE_ESD=1 -DUSE_ARTS=1 -DMBROLA_BIN=\"/usr/bin/mbrola\" -DMBROLA_DB=\"/usr/share/festival/lib/voices/polish/pl1_mbrola/pl1/pl1\"
  PROGS        = powiedz
  
