@@ -6,6 +6,7 @@ Release:	3
 License:	GPL
 Group:		Applications/Sound
 Source0:	http://www.linux.bielsko.pl/%{name}_%{version}.tgz
+# Source0-md5:	98e71acc4d24c4c9f83db7b52b306b6c
 Patch0:		%{name}-rcfile.patch
 Patch1:		%{name}-dsp-handle-fix.patch
 Patch2:		%{name}-esd.patch
