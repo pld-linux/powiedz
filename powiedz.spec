@@ -5,8 +5,6 @@ Version:	0.2
 Release:	1
 License:	GPL
 Group:		Applications/Sound
-Group(de):	Applikationen/Laut
-Group(pl):	Aplikacje/D¼wiêk
 Source0:	http://www.linux.bielsko.pl/%{name}_%{version}.tgz
 Patch0:		%{name}-rcfile.patch
 Patch1: 	%{name}-dsp-handle-fix.patch
