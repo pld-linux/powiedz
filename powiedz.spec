@@ -7,7 +7,7 @@ License:	GPL
 Group:		Applications/Sound
 Group(de):	Applikationen/Laut
 Group(pl):	Aplikacje/D¼wiêk
-Source0:	%{name}_%{version}.tgz
+Source0:	http://www.linux.bielsko.pl/%{name}_%{version}.tgz
 Patch0:		%{name}-rcfile.patch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -30,7 +30,7 @@ install -d $RPM_BUILD_ROOT%{_bindir}
 
 %{__make} install PREFIX=$RPM_BUILD_ROOT%{_prefix}
 tail +3 <pars.def >sayrc.example
-mv klatt_par.doc klatt_par
+mv -f klatt_par.doc klatt_par
 gzip -9nf PRZECZYTAJ.TO README README.linux sayrc.example klatt_par
 
 %files
