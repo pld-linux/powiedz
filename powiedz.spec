@@ -1,8 +1,8 @@
 #
 # Conditional build:
 %bcond_without	arts	# without aRts support
-%bcond_without	esound	# without EsounD support
-#
+%bcond_without	esd	# without EsounD support
+
 Summary:	Text to speech system
 Summary(pl):	Syntezator mowy
 Name:		powiedz
@@ -15,7 +15,7 @@ Source0:	http://www.rivendell.eu.org/%{name}-%{version}.tgz
 Patch0:		%{name}-dsp-handle-fix.patch
 Patch1:		%{name}-Makefile.patch
 %{?with_arts:Buildrequires:	arts-devel}
-%{?with_esound:BuildRequires:	esound-devel}
+%{?with_esd:BuildRequires:	esound-devel}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -33,8 +33,8 @@ Polski syntezator mowy stworzony na podstawie rsynth.
 cp Makefile_plain Makefile
 %{__make} \
 	CFLAGS="%{rpmcflags} %{?with_arts:`artsc-config --cflags`}" \
-	OPTDEFS="%{?with_arts:-DUSE_ARTS=1} %{?with_esound:-DUSE_ESD=1}" \
-	OPTLIBS="%{?with_arts:`artsc-config --libs`} %{?with_esound:-lesd}"
+	OPTDEFS="%{?with_arts:-DUSE_ARTS=1} %{?with_esd:-DUSE_ESD=1}" \
+	OPTLIBS="%{?with_arts:`artsc-config --libs`} %{?with_esd:-lesd}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
