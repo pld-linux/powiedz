@@ -2,12 +2,14 @@ Summary:	Text to speech system
 Summary(pl):	Syntezator mowy
 Name:		powiedz
 Version:	0.2
-Release:	2
+Release:	3
 License:	GPL
 Group:		Applications/Sound
 Source0:	http://www.linux.bielsko.pl/%{name}_%{version}.tgz
 Patch0:		%{name}-rcfile.patch
 Patch1:		%{name}-dsp-handle-fix.patch
+Patch2:		%{name}-esd.patch
+BuildRequires:	esound-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -20,6 +22,7 @@ Polski syntezator mowy stworzony na podstawie rsynth.
 %setup -q -n %{name}_%{version}
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %build
 %{__make} CFLAGS="%{rpmcflags} -DUSE_RC_FILE"
