@@ -29,14 +29,15 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_bindir}
 
 %{__make} install PREFIX=$RPM_BUILD_ROOT%{_prefix}
+
 tail +3 <pars.def >sayrc.example
 mv -f klatt_par.doc klatt_par
 gzip -9nf PRZECZYTAJ.TO README README.linux sayrc.example klatt_par
 
-%files
-%defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/powiedz
-%doc *.gz
-
 %clean
 rm -rf $RPM_BUILD_ROOT
+
+%files
+%defattr(644,root,root,755)
+%doc *.gz
+%attr(755,root,root) %{_bindir}/powiedz
