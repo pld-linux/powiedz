@@ -1,0 +1,12 @@
+diff -urN powiedz_0.2.ORIG/hplay.c powiedz_0.2/hplay.c
+--- powiedz_0.2.ORIG/hplay.c	Sat Mar 13 10:47:08 1999
++++ powiedz_0.2/hplay.c	Tue Dec 18 01:29:36 2001
+@@ -49,7 +49,7 @@
+ static int
+ audio_open(void)
+ {
+- dev_fd = open(dev_file, O_WRONLY | O_NDELAY);
++ dev_fd = open(dev_file, O_WRONLY);
+  if (dev_fd < 0)
+   {
+    perror(dev_file);
