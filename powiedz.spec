@@ -14,7 +14,7 @@ Source0:	http://www.rivendell.eu.org/%{name}-%{version}.tgz
 # Source0-md5:	e41665cc88c096473d48ff2fd32c4646
 Patch0:		%{name}-dsp-handle-fix.patch
 Patch1:		%{name}-Makefile.patch
-%{?with_arts:Buildrequires:	artsc-devel}
+%{?with_arts:BuildRequires:	artsc-devel}
 %{?with_esd:BuildRequires:	esound-devel}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
