@@ -7,7 +7,7 @@ License:	GPL
 Group:		Applications/Sound
 Source0:	http://www.linux.bielsko.pl/%{name}_%{version}.tgz
 Patch0:		%{name}-rcfile.patch
-Patch1: 	%{name}-dsp-handle-fix.patch
+Patch1:		%{name}-dsp-handle-fix.patch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
