@@ -1,0 +1,29 @@
+diff -urN aaa/powiedz/Makefile_plain powiedz/Makefile_plain
+--- aaa/powiedz/Makefile_plain	2003-08-30 20:57:37.000000000 +0200
++++ powiedz/Makefile_plain	2003-08-31 14:30:24.000000000 +0200
+@@ -2,9 +2,8 @@
+ CC           = /usr/bin/gcc
+ PREFIX       = /usr
+ BIN_DIR      = $(PREFIX)/bin
+-LDLIBS       = -L/usr/lib -lm
+-CFLAGS       = -g -O
+-DEFS         = 
++LDLIBS       = -L/usr/lib -lm -lesd -L/usr/lib -ldl -lartsc -lpthread
++DEFS         =  -DUSE_ESD=1 -DUSE_ARTS=1 -DMBROLA_BIN=\"/usr/bin/mbrola\" -DMBROLA_DB=\"/usr/share/festival/lib/voices/polish/pl1_mbrola/pl1/pl1\"
+ PROGS        = powiedz
+ 
+ .c.o :
+@@ -12,7 +11,7 @@
+ 
+ all: $(PROGS)
+ 
+-SAY_OBJS = say.o newstring.o phtoelm.o holmes.o elements.o nsynth.o def_pars.o aufile.o dits.o polytran.o palput.o main.o
++SAY_OBJS = say.o newstring.o phtoelm.o holmes.o elements.o nsynth.o def_pars.o aufile.o dits.o polytran.o palput.o main.o umbrella.o
+ 
+ powiedz : $(SAY_OBJS)
+ 	$(CC) -o $@ $(LDFLAGS) $(SAY_OBJS) $(LDLIBS) 
+@@ -34,3 +33,4 @@
+ palput.o : palput.c
+ polytran.o: polytran.c
+ main.o: main.c powiedz.h
++umbrella.o: umbrella.c powiedz.h
