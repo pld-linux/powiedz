@@ -9,6 +9,7 @@ Group(de):	Applikationen/Laut
 Group(pl):	Aplikacje/D¼wiêk
 Source0:	http://www.linux.bielsko.pl/%{name}_%{version}.tgz
 Patch0:		%{name}-rcfile.patch
+Patch1: 	%{name}-dsp-handle-fix.patch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -20,6 +21,7 @@ Polski syntezator mowy stworzony na podstawie rsynth.
 %prep
 %setup -q -n %{name}_%{version}
 %patch0 -p1
+%patch1 -p1
 
 %build
 %{__make} CFLAGS="%{rpmcflags} -DUSE_RC_FILE"
