@@ -32,7 +32,8 @@ Polski syntezator mowy stworzony na podstawie rsynth.
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_bindir},%{_examplesdir}/%{name}-%{version}}
 
-%{__make} install PREFIX=$RPM_BUILD_ROOT%{_prefix}
+%{__make} install \
+	PREFIX=$RPM_BUILD_ROOT%{_prefix}
 
 tail +3 <pars.def >$RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}/sayrc.example
 mv -f klatt_par.doc klatt_par
