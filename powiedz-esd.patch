@@ -1,0 +1,79 @@
+diff -urN aaa/powiedz_0.2/Makefile powiedz_0.2/Makefile
+--- aaa/powiedz_0.2/Makefile	Sat Mar 13 10:57:43 1999
++++ powiedz_0.2/Makefile	Mon Feb 17 22:42:40 2003
+@@ -3,7 +3,7 @@
+ CC           = /usr/bin/gcc
+ PREFIX       = /usr
+ BIN_DIR      = $(PREFIX)/bin
+-LDLIBS       = -L/usr/lib  -lm
++LDLIBS       = -L/usr/lib  -lm -lesd
+ CFLAGS       = -g -O
+ CPPFLAGS     = -I. -I.  -I/usr/include 
+ DEFS         = 
+diff -urN aaa/powiedz_0.2/hplay.c powiedz_0.2/hplay.c
+--- aaa/powiedz_0.2/hplay.c	Sat Mar 13 10:47:08 1999
++++ powiedz_0.2/hplay.c	Mon Feb 17 23:33:39 2003
+@@ -26,6 +26,8 @@
+ 
+ #include <sys/ioctl.h>
+ 
++#include <esd.h>
++
+ #include <sys/soundcard.h>
+ #include "proto.h"
+ #include "getargs.h"
+@@ -46,10 +48,21 @@
+ 
+ char *prog = "hplay";
+ 
++static int esd_out=0;
++
+ static int
+ audio_open(void)
+ {
+- dev_fd = open(dev_file, O_WRONLY);
++	esd_format_t esd_format = ESD_BITS8 | ESD_MONO| ESD_STREAM | ESD_PLAY;
++	char esd_server[20];
++
++	sprintf(esd_server, "localhost:%d", ESD_DEFAULT_PORT);
++	
++ if(esd_out)
++  dev_fd = esd_play_stream_fallback(esd_format, samp_rate, esd_server, "powiedz");
++ else
++  dev_fd = open(dev_file, O_WRONLY);
++ 
+  if (dev_fd < 0)
+   {
+    perror(dev_file);
+@@ -70,6 +83,7 @@
+                 "r", "%d", &rate_set,    "Czêstotliwo¶æ próbkowania",
+                 "a", NULL, &use_audio,   "D¼wiêk w³±czony",
+                 "D","/dev/dsp", &dev_file,"Urz±dzenie audio",
++								"e", NULL, &esd_out,      "Wyj¶cie ESD",
+                 NULL);
+ 
+  if (help_only)
+@@ -81,7 +95,7 @@
+  if (rate_set)
+   samp_rate = rate_set;
+ 
+- if (dev_fd > 0)
++ if (dev_fd > 0 && !esd_out)
+   {
+    ioctl(dev_fd, SNDCTL_DSP_SPEED, &samp_rate);
+  //  printf("Actual sound rate: %ld\n", samp_rate);
+@@ -98,8 +112,12 @@
+  /* Close audio system  */
+  if (dev_fd >= 0)
+   {
+-   ioctl(dev_fd, SNDCTL_DSP_SYNC, &dummy);
+-   close(dev_fd);
++	 if(esd_out)
++    esd_close(dev_fd);
++	 else{
++    ioctl(dev_fd, SNDCTL_DSP_SYNC, &dummy);
++    close(dev_fd);
++	 }
+    dev_fd = -1;
+   }
+ 
