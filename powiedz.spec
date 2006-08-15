@@ -32,6 +32,7 @@ Polski syntezator mowy stworzony na podstawie rsynth.
 %build
 cp Makefile_plain Makefile
 %{__make} \
+	CC="%{__cc}" \
 	CFLAGS="%{rpmcflags} %{?with_arts:`artsc-config --cflags`}" \
 	OPTDEFS="%{?with_arts:-DUSE_ARTS=1} %{?with_esd:-DUSE_ESD=1}" \
 	OPTLIBS="%{?with_arts:`artsc-config --libs`} %{?with_esd:-lesd}"
