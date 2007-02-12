@@ -4,7 +4,7 @@
 %bcond_without	esd	# without EsounD support
 
 Summary:	Text to speech system
-Summary(pl):	Syntezator mowy
+Summary(pl.UTF-8):   Syntezator mowy
 Name:		powiedz
 Version:	1.0
 Release:	2
@@ -21,7 +21,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %description
 Polish text to speech system based on rsynth.
 
-%description -l pl
+%description -l pl.UTF-8
 Polski syntezator mowy stworzony na podstawie rsynth.
 
 %prep
