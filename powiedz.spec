@@ -4,7 +4,7 @@
 %bcond_without	esd	# without EsounD support
 
 Summary:	Text to speech system
-Summary(pl.UTF-8):   Syntezator mowy
+Summary(pl.UTF-8):	Syntezator mowy
 Name:		powiedz
 Version:	1.0
 Release:	2
