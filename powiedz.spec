@@ -1,13 +1,13 @@
 #
 # Conditional build:
-%bcond_without	arts	# without aRts support
-%bcond_without	esd	# without EsounD support
+%bcond_with	arts	# without aRts support
+%bcond_with	esd	# without EsounD support
 
 Summary:	Text to speech system
 Summary(pl.UTF-8):	Syntezator mowy
 Name:		powiedz
 Version:	1.0
-Release:	5
+Release:	6
 License:	GPL
 Group:		Applications/Sound
 Source0:	http://www.rivendell.eu.org/%{name}-%{version}.tgz
@@ -33,7 +33,7 @@ Polski syntezator mowy stworzony na podstawie rsynth.
 cp Makefile_plain Makefile
 %{__make} \
 	CC="%{__cc}" \
-	CFLAGS="%{rpmcflags} %{?with_arts:`artsc-config --cflags`}" \
+	CFLAGS="%{rpmcflags} %{rpmcppflags} %{?with_arts:`artsc-config --cflags`}" \
 	OPTDEFS="%{?with_arts:-DUSE_ARTS=1} %{?with_esd:-DUSE_ESD=1}" \
 	OPTLIBS="%{?with_arts:`artsc-config --libs`} %{?with_esd:-lesd}"
 
