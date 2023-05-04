@@ -1,7 +1,7 @@
 #
 # Conditional build:
-%bcond_with	arts	# without aRts support
-%bcond_with	esd	# without EsounD support
+%bcond_with	arts	# aRts support
+%bcond_with	esd	# EsounD support
 
 Summary:	Text to speech system
 Summary(pl.UTF-8):	Syntezator mowy
@@ -30,8 +30,7 @@ Polski syntezator mowy stworzony na podstawie rsynth.
 %patch1 -p1
 
 %build
-cp Makefile_plain Makefile
-%{__make} \
+%{__make} -f Makefile_plain \
 	CC="%{__cc}" \
 	CFLAGS="%{rpmcflags} %{rpmcppflags} %{?with_arts:`artsc-config --cflags`}" \
 	OPTDEFS="%{?with_arts:-DUSE_ARTS=1} %{?with_esd:-DUSE_ESD=1}" \
@@ -49,5 +48,5 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/%{name}
+%attr(755,root,root) %{_bindir}/powiedz
 %{_examplesdir}/%{name}-%{version}
