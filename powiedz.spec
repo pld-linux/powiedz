@@ -7,7 +7,7 @@ Summary:	Text to speech system
 Summary(pl.UTF-8):	Syntezator mowy
 Name:		powiedz
 Version:	1.0
-Release:	6
+Release:	7
 License:	GPL
 Group:		Applications/Sound
 Source0:	http://www.rivendell.eu.org/%{name}-%{version}.tgz
