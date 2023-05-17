@@ -10,7 +10,7 @@ Version:	1.0
 Release:	7
 License:	GPL
 Group:		Applications/Sound
-Source0:	http://www.rivendell.eu.org/%{name}-%{version}.tgz
+Source0:	http://www.polip.com/files/%{name}-%{version}.tgz
 # Source0-md5:	e41665cc88c096473d48ff2fd32c4646
 Patch0:		%{name}-dsp-handle-fix.patch
 Patch1:		%{name}-Makefile.patch
