@@ -26,8 +26,8 @@ Polski syntezator mowy stworzony na podstawie rsynth.
 
 %prep
 %setup -q -n %{name}
-%patch0 -p1
-%patch1 -p1
+%patch -P0 -p1
+%patch -P1 -p1
 
 %build
 %{__make} -f Makefile_plain \
